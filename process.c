@@ -449,7 +449,7 @@ void cpu_idle(void)
 			local_irq_disable();
 
 			enter_idle();
-
+                        printk("hello world\n");
 			/* Don't trace irqs off for idle */
 			stop_critical_timings();
 
