@@ -22,7 +22,15 @@
 #include <linux/uaccess.h>
 #include <linux/unistd.h>
 
+#include <linux/kernel.h>
+
 #include <asm/syscalls.h>
+
+asmlinkage int sys_helloworld(){
+  printk(KERN_EMERG "Hello world from my syscall!\n");
+  return 0;
+}
+
 
 /*
  * Do a system call from kernel instead of calling sys_execve so we

@@ -44,6 +44,8 @@ asmlinkage int sys_get_thread_area(struct user_desc __user *);
 /* X86_32 only */
 #ifdef CONFIG_X86_32
 
+asmlinkage int sys_helloworld();
+
 /* kernel/signal.c */
 asmlinkage int sys_sigsuspend(int, int, old_sigset_t);
 asmlinkage int sys_sigaction(int, const struct old_sigaction __user *,
@@ -63,6 +65,7 @@ long sys_arch_prctl(int, unsigned long);
 /* kernel/sys_x86_64.c */
 asmlinkage long sys_mmap(unsigned long, unsigned long, unsigned long,
 			 unsigned long, unsigned long, unsigned long);
+
 
 #endif /* CONFIG_X86_32 */
 #endif /* _ASM_X86_SYSCALLS_H */
