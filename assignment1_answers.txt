@@ -1,0 +1,23 @@
+CMPE297 Assignment 1:
+II. Steps to add a new syscall for linux kernel version 2.6.34.13
+1.Add ".long sys_helloworld" at the end of the file syscall_table_32.S under arch/x86/kernel
+2.Add "#define __NR_helloworld 338" at the end of the list in arch/x86/include/asm/unistd_32.h.  Increment NR_syscalls to 339
+3.implement helloworld syscall in /arch/x86/kernel/sys_i386_32.c
+  #include <linux/linkage.h>
+
+  asmlinkage int sys_helloworld() {
+   printk(KERN_EMERG "Hello World!\n");
+   return 0;
+  }
+
+III. Steps to add a new hypercall to Xen hypervisor 4.2.0
+1. add a new entry in xen/arch/x86/x86_32/entry.S
+2. define a new number for the new hypercall in xen/include/public/xen.h
+3. implement the new hypercall
+
+Applications running on guest OS makes a system call to Xen hypervisor. Then Xen hypervisor passes the control back to guest OS.
+Guest OS will use hypercalls to hypervisor to request privileged operations.  This mechanism adds one level of indirection
+comparing to native application requesting privileged operations via syscall to OS has a small
+penalty on the speed due to the extra layer of indirection.
+
+ 
